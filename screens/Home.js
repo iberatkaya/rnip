@@ -82,7 +82,7 @@ export default class Home extends React.Component{
     render(){
         return(
             <ScrollView contentContainerStyle = {{height: height}}>
-                <StatusBar backgroundColor = '#cccccc' barStyle = 'dark-content' />
+                <StatusBar backgroundColor = '#dcdcdc' barStyle = 'dark-content' />
                 {  !(Object.entries(this.state.data).length === 0 && this.state.data.constructor === Object) ?
                     <FlatList
                         style = {{backgroundColor: '#f9f9f9', paddingTop: 4}}
@@ -98,12 +98,12 @@ export default class Home extends React.Component{
                         }}
                     />
                     :
-                    <ActivityIndicator size = {72} color = '#999999' style = {{marginTop: height * 0.25}} />
+                    <ActivityIndicator size = {72} color = '#999999' style = {{marginTop: height * 0.3}} />
                 }
                 <View style = {{position: 'absolute', bottom: 0, alignItems: 'center', width: width, backgroundColor: '#fff'}}>
                     <AdMobBanner
                         adSize="smartBanner"
-                        adUnitID={demobannerid}
+                        adUnitID={bannerid}
                         onLoad={() => console.log("Ad loaded successfully")}
                         onFailedToLoad={m => console.log("Ad failed to load because of:"+m)}
                         />

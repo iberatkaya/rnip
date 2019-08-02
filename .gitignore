@@ -3,6 +3,8 @@
 .DS_Store
 
 screens/consts.js
+android/app/src/main/AndroidManifest.xml
+android/gradle.properties
 
 # Xcode
 #

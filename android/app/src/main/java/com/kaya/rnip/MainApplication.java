@@ -1,4 +1,4 @@
-package com.rnip;
+package com.kaya.rnip;
 
 import android.app.Application;
 import android.util.Log;

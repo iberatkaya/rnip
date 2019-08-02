@@ -1,4 +1,4 @@
-package com.rnip;
+package com.kaya.rnip;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
