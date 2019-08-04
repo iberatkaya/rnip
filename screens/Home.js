@@ -98,7 +98,7 @@ export default class Home extends React.Component{
                         }}
                     />
                     :
-                    <ActivityIndicator size = {72} color = '#999999' style = {{marginTop: height * 0.3}} />
+                    <ActivityIndicator size = {72} color = '#999999' style = {{marginTop: height * 0.32}} />
                 }
                 <View style = {{position: 'absolute', bottom: 0, alignItems: 'center', width: width, backgroundColor: '#fff'}}>
                     <AdMobBanner
