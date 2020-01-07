@@ -1,5 +1,7 @@
 import React from 'react';
-import {createStackNavigator, createDrawerNavigator, createAppContainer} from 'react-navigation';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
+import {createDrawerNavigator} from 'react-navigation-drawer';
 import {Dimensions, View, Image, Linking, TouchableOpacity, Text, Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeScreen from './screens/Home';
@@ -24,7 +26,7 @@ const DrawNavigator = createDrawerNavigator({
           resizeMode = 'stretch' />
           <TouchableOpacity
             style={{ paddingLeft: 16, paddingVertical: 16 }}
-            onPress={() => { Linking.openURL("https://play.google.com/store/apps/details?id=com.kaya.qr_reader_and_generator"); }}
+            onPress={() => { Linking.openURL("https://play.google.com/store/apps/details?id=com.kaya.rnip"); }}
           >
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Icon name="star" size={24} color="#888888" />

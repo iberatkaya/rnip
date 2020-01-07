@@ -4,7 +4,7 @@ import axios from 'axios';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {AdMobBanner} from 'react-native-androide';
 import {bannerid, demobannerid} from './consts';
-import {Header} from 'react-navigation';
+import {Header} from 'react-navigation-stack';
 
 const height = Dimensions.get('window').height - StatusBar.currentHeight - Header.HEIGHT;
 const width = Dimensions.get('window').width;
@@ -14,19 +14,21 @@ export default class Home extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            data: {}
+            data: {},
+            loaded: false,
+            loadedAd: false
         };
     }
 
     fetchData = async () => {
-        let fetchedjson = await axios('http://ip-api.com/json/');
-        console.log(fetchedjson.data);
-        return fetchedjson.data;
+        let fetchedjson = await fetch('http://ip-api.com/json/');
+        let data = await fetchedjson.json();
+        return data;
     }
 
     async componentDidMount(){
         let data = await this.fetchData();
-        this.setState({data: data});
+        this.setState({data: data, loaded: true});
     }
 
     printData = (data) => {
@@ -50,16 +52,10 @@ export default class Home extends React.Component{
             else if(i == 'zip')
                 str = 'ZIP Code';
             let arr = [str, data[i]];
-            if(str != '')
+            if(str != '' && data[i] != '')
                 temparr.push(arr);
         }
-        console.log(temparr);
-        return temparr.sort((a, b) => {
-            if(a[0] == 'IP')
-                return -1;
-            else
-                a[0][0] - b[0][0];
-        });
+        return temparr;
     }
 
     static navigationOptions = ({navigation}) => {
@@ -83,9 +79,9 @@ export default class Home extends React.Component{
         return(
             <ScrollView contentContainerStyle = {{height: height}}>
                 <StatusBar backgroundColor = '#dcdcdc' barStyle = 'dark-content' />
-                {  !(Object.entries(this.state.data).length === 0 && this.state.data.constructor === Object) ?
+                {  this.state.loaded ?
                     <FlatList
-                        style = {{backgroundColor: '#f9f9f9', paddingTop: 4}}
+                        style = {this.state.loadedAd ? {backgroundColor: '#f9f9f9', paddingTop: 4, marginBottom: 60} : {backgroundColor: '#f9f9f9', paddingTop: 4}}
                         data = {this.printData(this.state.data)}
                         keyExtractor = {(item, index) => {return index.toString();}}
                         ItemSeparatorComponent = {() => (<View style = {{height: 1, backgroundColor: '#a9a9a9'}}></View>)}
@@ -104,8 +100,8 @@ export default class Home extends React.Component{
                     <AdMobBanner
                         adSize="smartBanner"
                         adUnitID={bannerid}
-                        onLoad={() => console.log("Ad loaded successfully")}
                         onFailedToLoad={m => console.log("Ad failed to load because of:"+m)}
+                        onLoad={() => { this.setState({ loadedAd: true }); }}
                         />
                 </View>
             </ScrollView>
