@@ -13,7 +13,7 @@
     "bu": "cd android && ./gradlew clean && ./gradlew bundleRelease"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "react": "16.8.0",
     "react-native": "0.61.1",
     "react-native-androide": "^1.0.2",
